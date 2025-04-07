@@ -1,0 +1,547 @@
+{
+  "Uuid": "70369109-ccb1-44d5-b171-1075acd9af56",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "5. Automatic Parting of Slabs!",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Nodes.DSFaceSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "d9f46a39-25b9-48c5-a2f8-ef5cc756c20f-0004ca2b:7:SURFACE"
+      ],
+      "Id": "0a4698ecb34041dfb209df2c201017b5",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4132a7e2348246de842026ffabb7ebc2",
+          "Name": "Surface",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a face."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "72f26f846b034f62a622bf92435b5a11",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "d62d6f31f7434501950354fb09759256",
+          "Name": "surfaces",
+          "Description": "Surfaces to join into polysurface\n\nSurface[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2f50467d5b9f4345bbdbc0dd2634dbe2",
+          "Name": "PolySurface",
+          "Description": "PolySurface",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.PolySurface.ByJoinedSurfaces@Autodesk.DesignScript.Geometry.Surface[]",
+      "Replication": "Auto",
+      "Description": "Make Polysurface by joining surfaces.\n\nPolySurface.ByJoinedSurfaces (surfaces: Surface[]): PolySurface"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "14b2796a0c434965a8f4f06200f0b3b4",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "d35b2ffe764043f783e283bfa20ef949",
+          "Name": "surface",
+          "Description": "Autodesk.DesignScript.Geometry.Surface",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0cfe0765d79e42f4986e8108c46497a2",
+          "Name": "Curve[]",
+          "Description": "Curve[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Surface.PerimeterCurves",
+      "Replication": "Auto",
+      "Description": "Return all the boundary Curves of the Surface.\n\nSurface.PerimeterCurves ( ): Curve[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "1b880307c1a04245875ce326a461d53f",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "b801578da89f4eb0b9e51bba52b483c6",
+          "Name": "curve",
+          "Description": "Autodesk.DesignScript.Geometry.Curve",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ec29a15577364932b01c2691bcd9221f",
+          "Name": "Point",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Curve.StartPoint",
+      "Replication": "Auto",
+      "Description": "Get the start Point along the Curve\n\nCurve.StartPoint: Point"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "0009ef12c3ea4d55aed93b18114221fb",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "9cbad0a258594964b5dcf0b72e3d094f",
+          "Name": "start",
+          "Description": "The location where the bubble will be located\n\nPoint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "621723170bc64976a5879feeb6d8bd3c",
+          "Name": "end",
+          "Description": "The other end\n\nPoint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a24416eea3db4d5a9083d35f39ec46a6",
+          "Name": "ReferencePlane",
+          "Description": "ReferencePlane",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.ReferencePlane.ByStartPointEndPoint@Autodesk.DesignScript.Geometry.Point,Autodesk.DesignScript.Geometry.Point",
+      "Replication": "Auto",
+      "Description": "Form a Refernece plane from two end points in the Active view. The cut vector is the Z Axis.\n\nReferencePlane.ByStartPointEndPoint (start: Point, end: Point): ReferencePlane"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "f1aa3316b77e4d70afaac40414a49cda",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "0f5f8b7dc83942f5bde3b9e04ecdbfdc",
+          "Name": "curve",
+          "Description": "Autodesk.DesignScript.Geometry.Curve",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6bd0e82bbd244ce4af7aa0ac7921f4b4",
+          "Name": "Point",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Curve.EndPoint",
+      "Replication": "Auto",
+      "Description": "Get the end Point along the Curve\n\nCurve.EndPoint: Point"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "26125d3cd06241feb3f27178672b42f5",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "804b0a0f13d543de956b7fb681b4ff2c",
+          "Name": "part",
+          "Description": "The part to divide.\n\nElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "639ce36090144745af2c79666e1f8c35",
+          "Name": "referencePlane",
+          "Description": "The reference plane to use for the division.\n\nReferencePlane[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "359fd64b46e44f9d9792ebbd72ff7b56",
+          "Name": "Parts",
+          "Description": "The created parts from the given element.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Rhythm.Revit.Elements.Parts.DivideParts@Revit.Elements.Element,Revit.Elements.ReferencePlane[]",
+      "Replication": "Auto",
+      "Description": "This node will divide the given parts by reference planes.\n\nParts.DivideParts (part: Element, referencePlane: ReferencePlane[]): Element"
+    },
+    {
+      "ConcreteType": "GenerativeDesign.DSModelElementMutlipleSelection, GenerativeDesign.Dynamo.Nodes.Revit",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "5de3eb0a-f73b-4ec4-bd04-bdb4204a1570-0004cfc9",
+        "5de3eb0a-f73b-4ec4-bd04-bdb4204a1570-0004cfca",
+        "5de3eb0a-f73b-4ec4-bd04-bdb4204a1570-0004d082",
+        "5de3eb0a-f73b-4ec4-bd04-bdb4204a1570-0004d13a",
+        "5de3eb0a-f73b-4ec4-bd04-bdb4204a1570-0004d13c"
+      ],
+      "Id": "c3ff3a019b0e4208bae97c9742af71e6",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "8bdc247806d64b0f94be4590c58624c7",
+          "Name": "Elements",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select multiple Model Elements from the Revit Document"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "8a400869498e4e2aa7a44b98b85c6a32",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "7996c994391c4788a74126a83fa5bd3c",
+          "Name": "line",
+          "Description": "The line where the bubble wil be located at the start\n\nLine",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a5f224b53a88484e9c8fba3dcfee0426",
+          "Name": "ReferencePlane",
+          "Description": "ReferencePlane",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.ReferencePlane.ByLine@Autodesk.DesignScript.Geometry.Line",
+      "Replication": "Auto",
+      "Description": "Form a ReferencePlane from a line in the Active view. The cut vector is the Z Axis.\n\nReferencePlane.ByLine (line: Line): ReferencePlane"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "0d3364b0523f4a0ca8c88fead632fc54",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "c7c5e35b221c4b7db1621f82be8ccf5e",
+          "Name": "grid",
+          "Description": "Revit.Elements.Grid",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "1dcd3a3ff1534904872faef4068bf8c7",
+          "Name": "Curve",
+          "Description": "Curve",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Grid.Curve",
+      "Replication": "Auto",
+      "Description": "Get the underlying Curve geometry from this Element\n\nGrid.Curve: Curve"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "4132a7e2348246de842026ffabb7ebc2",
+      "End": "d62d6f31f7434501950354fb09759256",
+      "Id": "3d2bd73ea247453f99fc35ef23f612db",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "2f50467d5b9f4345bbdbc0dd2634dbe2",
+      "End": "d35b2ffe764043f783e283bfa20ef949",
+      "Id": "803f208d514544f3a6842099771416f6",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0cfe0765d79e42f4986e8108c46497a2",
+      "End": "b801578da89f4eb0b9e51bba52b483c6",
+      "Id": "11cb29ff8b55463f9281d83c3fcf2bab",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0cfe0765d79e42f4986e8108c46497a2",
+      "End": "0f5f8b7dc83942f5bde3b9e04ecdbfdc",
+      "Id": "b19390eef77c4c42b02137bbae5c01d1",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "ec29a15577364932b01c2691bcd9221f",
+      "End": "621723170bc64976a5879feeb6d8bd3c",
+      "Id": "9018faff60914795af11e7314007edfe",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a24416eea3db4d5a9083d35f39ec46a6",
+      "End": "639ce36090144745af2c79666e1f8c35",
+      "Id": "9e4329e3c244495f9e8fcafafe8c3b5d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "6bd0e82bbd244ce4af7aa0ac7921f4b4",
+      "End": "9cbad0a258594964b5dcf0b72e3d094f",
+      "Id": "558e2687f6b842b58a95f52788dab0c5",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "8bdc247806d64b0f94be4590c58624c7",
+      "End": "804b0a0f13d543de956b7fb681b4ff2c",
+      "Id": "c11f2313148748fe8b7537f01e9b2efa",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "1dcd3a3ff1534904872faef4068bf8c7",
+      "End": "7996c994391c4788a74126a83fa5bd3c",
+      "Id": "64075bdc11234a0a839a0c95f00f0654",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [
+    {
+      "Name": "Rhythm",
+      "Version": "2023.9.1",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "26125d3cd06241feb3f27178672b42f5"
+      ]
+    },
+    {
+      "Name": "GenerativeDesign.Revit",
+      "Version": "6.0.2.0",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "c3ff3a019b0e4208bae97c9742af71e6"
+      ]
+    }
+  ],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.18",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "6.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.19.3.6394",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "0a4698ecb34041dfb209df2c201017b5",
+        "Name": "Select Face",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -326.32225534611263,
+        "Y": -285.48533989528374
+      },
+      {
+        "Id": "72f26f846b034f62a622bf92435b5a11",
+        "Name": "PolySurface.ByJoinedSurfaces",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1.5246799963101694,
+        "Y": -284.50653610713846
+      },
+      {
+        "Id": "14b2796a0c434965a8f4f06200f0b3b4",
+        "Name": "Surface.PerimeterCurves",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 339.587900178406,
+        "Y": -278.04825779539692
+      },
+      {
+        "Id": "1b880307c1a04245875ce326a461d53f",
+        "Name": "Curve.StartPoint",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 662.46022412251546,
+        "Y": -194.331642807069
+      },
+      {
+        "Id": "0009ef12c3ea4d55aed93b18114221fb",
+        "Name": "ReferencePlane.ByStartPointEndPoint",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 947.69979845997318,
+        "Y": -312.63801791908026
+      },
+      {
+        "Id": "f1aa3316b77e4d70afaac40414a49cda",
+        "Name": "Curve.EndPoint",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 664.20742561967643,
+        "Y": -311.50167327057284
+      },
+      {
+        "Id": "26125d3cd06241feb3f27178672b42f5",
+        "Name": "ʳʰʸᵗʰᵐ|Parts.DivideParts",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1748.0635953596325,
+        "Y": -348.64347515366364
+      },
+      {
+        "Id": "c3ff3a019b0e4208bae97c9742af71e6",
+        "Name": "Select Multiple Model Elements",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1287.58353696106,
+        "Y": -546.46621231057554
+      },
+      {
+        "Id": "8a400869498e4e2aa7a44b98b85c6a32",
+        "Name": "ReferencePlane.ByLine",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1114.50664541624,
+        "Y": -735.833043617133
+      },
+      {
+        "Id": "0d3364b0523f4a0ca8c88fead632fc54",
+        "Name": "Grid.Curve",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 802.559274378896,
+        "Y": -730.781264329078
+      }
+    ],
+    "Annotations": [],
+    "X": -362.05662917216932,
+    "Y": 665.04276138026523,
+    "Zoom": 0.7918002295663954
+  }
+}
