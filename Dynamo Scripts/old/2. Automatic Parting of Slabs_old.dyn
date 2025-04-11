@@ -1,0 +1,579 @@
+{
+  "Uuid": "70369109-ccb1-44d5-b171-1075acd9af56",
+  "IsCustomNode": false,
+  "Description": "Creates a Reference Plane Normal to a Selected Grid Line, Creates Parts from Selected Elements and Divides Parts at Reference Plane Location",
+  "Name": "2. Automatic Parting of Slabs",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [
+    {
+      "Id": "343ee02a7bba481b8f75ba15d3d4afff",
+      "Name": "Select Multiple Model Elements",
+      "Type": "selection",
+      "Type2": "hostSelection",
+      "Value": "9e343347-e3b6-48ba-89a5-94b31bdd8286-00025129",
+      "Description": "Select multiple Model Elements from the Revit Document"
+    },
+    {
+      "Id": "19c8cea6d92c44858e15d08c72842a9d",
+      "Name": "Select Grid Line",
+      "Type": "selection",
+      "Type2": "hostSelection",
+      "Value": "a830cc6e-feee-4743-b808-4507189dcc96-0004cbfc",
+      "Description": "Select multiple Model Elements from the Revit Document"
+    }
+  ],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "GenerativeDesign.DSModelElementMutlipleSelection, GenerativeDesign.Dynamo.Nodes.Revit",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "9e343347-e3b6-48ba-89a5-94b31bdd8286-00025129"
+      ],
+      "Id": "343ee02a7bba481b8f75ba15d3d4afff",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "cda3583ea7824611b90e9a849382a0d0",
+          "Name": "Elements",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select multiple Model Elements from the Revit Document"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "c743cf4ccb71417a9ccac1051c98c0d9",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "0cd2a7d8048b405d88f5094dc780cc9c",
+          "Name": "element",
+          "Description": "The element to convert to parts.\n\nElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c697b4b818fb44bea41ff16fa9dc4221",
+          "Name": "Parts",
+          "Description": "The created parts from the given element.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Rhythm.Revit.Elements.Elements.CreateParts@Revit.Elements.Element",
+      "Replication": "Auto",
+      "Description": "This node will convert the given elements to parts.\n\nElements.CreateParts (element: Element): Element[]"
+    },
+    {
+      "ConcreteType": "GenerativeDesign.DSModelElementMutlipleSelection, GenerativeDesign.Dynamo.Nodes.Revit",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "a830cc6e-feee-4743-b808-4507189dcc96-0004cbfc"
+      ],
+      "Id": "19c8cea6d92c44858e15d08c72842a9d",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f6dd0842e20e4eb5b0eb4b1a9492010b",
+          "Name": "Elements",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select multiple Model Elements from the Revit Document"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "1b37a69cac274f31b9a9a0c3ff89de0f",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "4613073023d84ceda199302abe94520e",
+          "Name": "part",
+          "Description": "The part to divide.\n\nElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c5b5edc13ee646d8a9585afc2aef5601",
+          "Name": "referencePlane",
+          "Description": "The reference plane to use for the division.\n\nReferencePlane[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "dd7839f8a2c943448e9d16d8c010f837",
+          "Name": "Parts",
+          "Description": "The created parts from the given element.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Rhythm.Revit.Elements.Parts.DivideParts@Revit.Elements.Element,Revit.Elements.ReferencePlane[]",
+      "Replication": "Auto",
+      "Description": "This node will divide the given parts by reference planes.\n\nParts.DivideParts (part: Element, referencePlane: ReferencePlane[]): Element"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "6e04fa75d76a40cfa412b219b6058d97",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "a69dfb94cae74bd3952edb5eb513ec6a",
+          "Name": "start",
+          "Description": "The location where the bubble will be located\n\nPoint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "869b099b94c94238bfe36e1c2fd90587",
+          "Name": "end",
+          "Description": "The other end\n\nPoint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "b835815ab3c14f62b9ebd8e16ab6c0b0",
+          "Name": "ReferencePlane",
+          "Description": "ReferencePlane",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.ReferencePlane.ByStartPointEndPoint@Autodesk.DesignScript.Geometry.Point,Autodesk.DesignScript.Geometry.Point",
+      "Replication": "Auto",
+      "Description": "Form a Refernece plane from two end points in the Active view. The cut vector is the Z Axis.\n\nReferencePlane.ByStartPointEndPoint (start: Point, end: Point): ReferencePlane"
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# Import necessary namespaces\r\nimport clr\r\nclr.AddReference('RevitAPI')\r\nfrom Autodesk.Revit.DB import *\r\nclr.AddReference('RevitNodes')\r\nimport Revit\r\nclr.ImportExtensions(Revit.Elements)\r\nclr.ImportExtensions(Revit.GeometryConversion)\r\nfrom Autodesk.DesignScript.Geometry import *\r\n\r\n# Unwrap the Revit grid line element\r\ngridLine = UnwrapElement(IN[0])\r\n\r\n# Get the curve of the grid line\r\nrevitCurve = gridLine.Curve\r\n\r\n# Convert the Revit curve to Dynamo curve\r\ndynamoCurve = revitCurve.ToProtoType()\r\n\r\nOUT = dynamoCurve\r\n",
+      "Engine": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "0470cd3c2ada49539c7ea582bba092f2",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "24c2e03c651847ad89346b2d21acc921",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "406a92404a1944c9abc276f3b390b11a",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "3c2e96466c2b49929f379018246d8c2f",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "5f7a13a94e084f7199d221588fb37fe2",
+          "Name": "curve",
+          "Description": "Autodesk.DesignScript.Geometry.Curve",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "37e32f4198ab4245a3a62fed6a6a93e5",
+          "Name": "Point",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Curve.StartPoint",
+      "Replication": "Auto",
+      "Description": "Get the start Point along the Curve\n\nCurve.StartPoint: Point"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "dbec9263ca3b46c0979f8d96331111d1",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "df314662892747e5ab4b569370e6eb35",
+          "Name": "curve",
+          "Description": "Autodesk.DesignScript.Geometry.Curve",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6a3ea3874dec4550816a2e321714de5a",
+          "Name": "Point",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Curve.EndPoint",
+      "Replication": "Auto",
+      "Description": "Get the end Point along the Curve\n\nCurve.EndPoint: Point"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "cda3583ea7824611b90e9a849382a0d0",
+      "End": "0cd2a7d8048b405d88f5094dc780cc9c",
+      "Id": "e0df391f88954a6d909c5751b516ee1d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c697b4b818fb44bea41ff16fa9dc4221",
+      "End": "4613073023d84ceda199302abe94520e",
+      "Id": "789c87dba69e49dea757819375575ab3",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f6dd0842e20e4eb5b0eb4b1a9492010b",
+      "End": "24c2e03c651847ad89346b2d21acc921",
+      "Id": "faa1a58914374bf59e1a98147067153f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b835815ab3c14f62b9ebd8e16ab6c0b0",
+      "End": "c5b5edc13ee646d8a9585afc2aef5601",
+      "Id": "1232d4ca6500450bb526016d2237a876",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "406a92404a1944c9abc276f3b390b11a",
+      "End": "5f7a13a94e084f7199d221588fb37fe2",
+      "Id": "05b9b07035d043e5ba0bd2b3611013e2",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "406a92404a1944c9abc276f3b390b11a",
+      "End": "df314662892747e5ab4b569370e6eb35",
+      "Id": "91aff47be839473a9b05968aa7651056",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "37e32f4198ab4245a3a62fed6a6a93e5",
+      "End": "869b099b94c94238bfe36e1c2fd90587",
+      "Id": "f5dc9274bebe4a4795dfa98d5a4b99d0",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "6a3ea3874dec4550816a2e321714de5a",
+      "End": "a69dfb94cae74bd3952edb5eb513ec6a",
+      "Id": "d790e8d240e049ee892b5e7015124b06",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [
+    {
+      "Name": "GenerativeDesign.Revit",
+      "Version": "6.1.1.0",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "343ee02a7bba481b8f75ba15d3d4afff",
+        "19c8cea6d92c44858e15d08c72842a9d"
+      ]
+    },
+    {
+      "Name": "Rhythm",
+      "Version": "2023.9.1",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "c743cf4ccb71417a9ccac1051c98c0d9",
+        "1b37a69cac274f31b9a9a0c3ff89de0f"
+      ]
+    }
+  ],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.18",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "6.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [
+    {
+      "NodeId": "6e04fa75-d76a-40cf-a412-b219b6058d97",
+      "Binding": {
+        "ByStartPointEndPoint_InClassDecl-1_InFunctionScope-1_Instance0_6e04fa75-d76a-40cf-a412-b219b6058d97": "H4sIAAAAAAAACh3LoQ6AIBAG4Hf5s7cdciCaLWSjZxBQZzE4mvPd3fz6Nz8oa10x4FFM9T6vI46KQWFy8rYLG2XfGpJdAqXNC+XQZ1esE05CzCzF7axoFPGq/7XG96Z98S4fNVbyUl4AAAA="
+      }
+    }
+  ],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.2.2.5494",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -2722.7666015625,
+      "EyeY": 3405.746337890625,
+      "EyeZ": 15934.728515625,
+      "LookX": 2721.689697265625,
+      "LookY": -3401.7333984375,
+      "LookZ": -15940.3505859375,
+      "UpX": -0.0014687326038256288,
+      "UpY": 0.9999619126319885,
+      "UpZ": 0.008602050133049488
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "343ee02a7bba481b8f75ba15d3d4afff",
+        "Name": "Select Multiple Model Elements",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -600.4242052282431,
+        "Y": 23.889582945266056
+      },
+      {
+        "Id": "c743cf4ccb71417a9ccac1051c98c0d9",
+        "Name": "ʳʰʸᵗʰᵐ|Elements.CreateParts",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -96.0381947638939,
+        "Y": -46.28385707173287
+      },
+      {
+        "Id": "19c8cea6d92c44858e15d08c72842a9d",
+        "Name": "Select Grid Line",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -497.35149747145664,
+        "Y": 243.46792477821938
+      },
+      {
+        "Id": "1b37a69cac274f31b9a9a0c3ff89de0f",
+        "Name": "ʳʰʸᵗʰᵐ|Parts.DivideParts",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1005.6139708531534,
+        "Y": 49.2610612886414
+      },
+      {
+        "Id": "6e04fa75d76a40cfa412b219b6058d97",
+        "Name": "ReferencePlane.ByStartPointEndPoint",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 406.2300359650819,
+        "Y": 354.9758127392352
+      },
+      {
+        "Id": "0470cd3c2ada49539c7ea582bba092f2",
+        "Name": "Python Script",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -220.9599871569102,
+        "Y": 363.21408808326476
+      },
+      {
+        "Id": "3c2e96466c2b49929f379018246d8c2f",
+        "Name": "Curve.StartPoint",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 71.55709262794801,
+        "Y": 293.02550215716406
+      },
+      {
+        "Id": "dbec9263ca3b46c0979f8d96331111d1",
+        "Name": "Curve.EndPoint",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 73.94066285428522,
+        "Y": 436.73362254170513
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "a706003a6aa74dd89fd6ea213050c3ea",
+        "Title": "Input\r\n",
+        "DescriptionText": "Description <Double click here to edit group description>",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "343ee02a7bba481b8f75ba15d3d4afff",
+          "19c8cea6d92c44858e15d08c72842a9d"
+        ],
+        "HasNestedGroups": false,
+        "Left": -610.4242052282431,
+        "Top": -101.11041705473394,
+        "Width": 331.0,
+        "Height": 495.57834183295336,
+        "FontSize": 36.0,
+        "GroupStyleId": "883066aa-1fe2-44a4-9bd1-c3df86bfe9f6",
+        "InitialTop": 23.889582945266056,
+        "InitialHeight": 412.57834183295336,
+        "TextblockHeight": 115.0,
+        "Background": "#FFFFB8D8"
+      },
+      {
+        "Id": "3c3b02b9050341c68aa873b41efd9958",
+        "Title": "Creates Reference Plane for splitting elements",
+        "DescriptionText": "Description <Double click here to edit group description>",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "6e04fa75d76a40cfa412b219b6058d97",
+          "0470cd3c2ada49539c7ea582bba092f2",
+          "3c2e96466c2b49929f379018246d8c2f",
+          "dbec9263ca3b46c0979f8d96331111d1"
+        ],
+        "HasNestedGroups": false,
+        "Left": -230.9599871569102,
+        "Top": 220.02550215716406,
+        "Width": 1004.1900231219921,
+        "Height": 348.7081203845411,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 293.02550215716406,
+        "InitialHeight": 305.7081203845411,
+        "TextblockHeight": 63.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "257b761bc68741a59a40a81ef40b2ff1",
+        "Title": "Split elements into parts",
+        "DescriptionText": "Description <Double click here to edit group description>",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "c743cf4ccb71417a9ccac1051c98c0d9"
+        ],
+        "HasNestedGroups": false,
+        "Left": -106.0381947638939,
+        "Top": -171.28385707173288,
+        "Width": 289.0,
+        "Height": 257.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": -46.28385707173287,
+        "InitialHeight": 162.0,
+        "TextblockHeight": 115.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "a60f3a4cc1a848e99c0efa1e4ebbb9f0",
+        "Title": "Divide parts using Reference Plane",
+        "DescriptionText": "Description <Double click here to edit group description>",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "1b37a69cac274f31b9a9a0c3ff89de0f"
+        ],
+        "HasNestedGroups": false,
+        "Left": 995.6139708531534,
+        "Top": -162.7389387113586,
+        "Width": 267.0,
+        "Height": 374.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 49.2610612886414,
+        "InitialHeight": 192.0,
+        "TextblockHeight": 202.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": -32.4519038188721,
+    "Y": 273.6677208788643,
+    "Zoom": 0.8765741603699627
+  }
+}
