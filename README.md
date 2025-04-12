@@ -26,3 +26,9 @@ The Method goes as follows:
 ## Example Data
 
 Note that the folder *Example Data* contains an example Revit project file and the "4D-Modelling_Template.xlsx" file at several stages of the process above.
+
+## Referencing
+
+This work was conducted by Mark McDaid and Frédéric Bosché in the CyberBuild Lab.
+This work has not been published yet, so there is not formal way to recognise it besides referring to this GitHub page.
+
