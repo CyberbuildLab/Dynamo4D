@@ -1,5 +1,5 @@
-# Dynamo Scripts for Rapid Location-Based Scheduling and 4D Modelling
-Method and Dynamo scripts to rapidlly (highly automatically) generate construction schedules and 4D BIM models (i.e. 3D BIM model + schedule) given an input Revit model, a Location-Based Scheduling (LBS) strategy, and the general sequencing to be followed (at each location).
+# Method and Dynamo Scripts for Rapid Location-Based Scheduling and 4D Modelling
+Method and Dynamo scripts to rapidly (highly automatically) generate construction schedules and 4D BIM models (i.e. 3D BIM model + schedule) given an input Revit model, a Location-Based Scheduling (LBS) strategy, and the general sequencing to be followed (at each location).
 
 ## Method:
 The Method goes as follows:
