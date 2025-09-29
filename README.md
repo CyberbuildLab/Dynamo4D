@@ -1,4 +1,4 @@
-# Method and Dynamo Scripts for Rapid Location-Based Scheduling and 4D Modelling
+# Dynamo4D - Method and Dynamo Scripts for Rapid Location-Based Scheduling and 4D Modelling
 Method and Dynamo scripts to rapidly (highly automatically) generate construction schedules and 4D BIM models (i.e. 3D BIM model + schedule) given an input Revit model, a Location-Based Scheduling (LBS) strategy, and the general sequencing to be followed (at each location).
 
 ## Method:
@@ -30,5 +30,17 @@ Note that the folder *Example Data* contains an example Revit project file and t
 ## Referencing
 
 This work was conducted by Mark McDaid and Frédéric Bosché in the CyberBuild Lab.
-This work has not been published yet, so there is not formal way to recognise it besides referring to this GitHub page.
+This work has only been published as an MEng thesis so far. Please refer to it by citing the thesis (see below) and this GitHub page:
+
+```
+@mastersthesis{McDaid2024_Dynamo4D,
+  title        = {AutomatedMethod for ￿DModelling to Support Project Planning using the 3D BIM Model and a Digitalised, Location Based Scheduling Strategy},
+  author       = {Mark McDaid},
+  year         = {2024},
+  month        = {April},
+  address      = {Edinburgh, UK},
+  school       = {University of Edinburgh},
+  type         = {MEng thesis}
+}
+```
 
